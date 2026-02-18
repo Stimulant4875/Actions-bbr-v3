@@ -93,7 +93,7 @@ ask_to_save() {
         return 1
     fi
     
-    echo -n -e "\033[36m(｡♥‿♥｡) 要将这些配置永久保存到 $SYSCTL_CONF 吗？(y/n): \033[0m"
+    echo -n -e "\033[36m(｡♥‿♥｡) Do you want to permanently save these settings to $SYSCTL_CONF? (y/n): \033[0m"
     read -r SAVE
     if [[ "$SAVE" == "y" || "$SAVE" == "Y" ]]; then
         clean_sysctl_conf
@@ -105,13 +105,13 @@ ask_to_save() {
         if [[ "$QDISC" == "fq" || "$QDISC" == "fq_codel" ]]; then
             # fq 和 fq_codel 是内核内置的，删除旧的模块配置文件
             sudo rm -f "$MODULES_CONF"
-            echo -e "\033[1;32m(☆^ー^☆) 更改已永久保存啦~\033[0m"
+            echo -e "\033[1;32m(☆^ー^☆) Changes have been permanently saved!\033[0m"
         else
             echo "sch_$QDISC" | sudo tee "$MODULES_CONF" > /dev/null
-            echo -e "\033[1;32m(☆^ー^☆) 更改已永久保存，模块 sch_$QDISC 将在开机时自动加载~\033[0m"
+            echo -e "\033[1;32m(☆^ー^☆) Changes saved. Module sch_$QDISC will load automatically on boot!\033[0m"
         fi
     else
-        echo -e "\033[33m(⌒_⌒;) 好吧，没有永久保存，重启后会恢复原设置呢~\033[0m"
+        echo -e "\033[33m(⌒_⌒;) Okay, not saved permanently. Settings will revert after reboot.\033[0m"
     fi
 }
 
@@ -276,12 +276,12 @@ print_separator() {
 
 clear
 print_separator
-echo -e "\033[1;35m(☆ω☆)✧*｡ 欢迎来到 BBR 管理脚本世界哒！ ✧*｡(☆ω☆)\033[0m"
+echo -e "\033[1;35m(☆ω☆)✧*｡ Welcome to the BBR Management Script! ✧*｡(☆ω☆)\033[0m"
 print_separator
-echo -e "\033[36m当前 TCP 拥塞控制算法：\033[0m\033[1;32m$CURRENT_ALGO\033[0m"
-echo -e "\033[36m当前队列管理算法：    \033[0m\033[1;32m$CURRENT_QDISC\033[0m"
+echo -e "\033[36mCurrent TCP Congestion Control: \033[0m\033[1;32m$CURRENT_ALGO\033[0m"
+echo -e "\033[36mCurrent Queue Discipline:     \033[0m\033[1;32m$CURRENT_QDISC\033[0m"
 print_separator
-echo -e "\033[1;33m作者：Joey  |  博客：https://joeyblog.net  |  反馈群组：https://t.me/+ft-zI76oovgwNmRh\033[0m"
+echo -e "\033[1;33mAuthor: Joey  |  Blog: https://joeyblog.net  |  Feedback Group: https://t.me/+ft-zI76oovgwNmRh\033[0m"
 print_separator
 
 echo -e "\033[1;33m╭( ･ㅂ･)و ✧ Please choose an option:\033[0m"
@@ -299,15 +299,15 @@ read -r ACTION
 
 case "$ACTION" in
     1)
-        echo -e "\033[1;32m٩(｡•́‿•̀｡)۶ 您选择了安装或更新 BBR v3！\033[0m"
+        echo -e "\033[1;32m٩(｡•́‿•̀｡)۶ You selected Install or Update BBR v3!\033[0m"
         install_latest_version
         ;;
     2)
-        echo -e "\033[1;32m(｡･∀･)ﾉﾞ 您选择了安装指定版本的 BBR！\033[0m"
+        echo -e "\033[1;32m(｡･∀･)ﾉﾞ You selected Install Specific Version!\033[0m"
         install_specific_version
         ;;
     3)
-        echo -e "\033[1;32m(｡･ω･｡) 检查是否为 BBR v3...\033[0m"
+        echo -e "\033[1;32m(｡･ω･｡) Checking if BBR v3 is active...\033[0m"
         BBR_MODULE_INFO=$(modinfo tcp_bbr 2>/dev/null)
         if [[ -z "$BBR_MODULE_INFO" ]]; then
             echo -e "\033[36m正在刷新模块依赖...\033[0m"
@@ -339,31 +339,31 @@ case "$ACTION" in
         fi
         ;;
     4)
-        echo -e "\033[1;32m(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 使用 BBR + FQ 加速！\033[0m"
+        echo -e "\033[1;32m(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Enabling BBR + FQ!\033[0m"
         ALGO="bbr"
         QDISC="fq"
         ask_to_save
         ;;
     5)
-        echo -e "\033[1;32m(๑•̀ㅂ•́)و✧ 使用 BBR + FQ_CODEL 加速！\033[0m"
+        echo -e "\033[1;32m(๑•̀ㅂ•́)و✧ Enabling BBR + FQ_CODEL!\033[0m"
         ALGO="bbr"
         QDISC="fq_codel"
         ask_to_save
         ;;
     6)
-        echo -e "\033[1;32m٩(•‿•)۶ 使用 BBR + FQ_PIE 加速！\033[0m"
+        echo -e "\033[1;32m٩(•‿•)۶ Enabling BBR + FQ_PIE!\033[0m"
         ALGO="bbr"
         QDISC="fq_pie"
         ask_to_save
         ;;
     7)
-        echo -e "\033[1;32m(ﾉ≧∀≦)ﾉ 使用 BBR + CAKE 加速！\033[0m"
+        echo -e "\033[1;32m(ﾉ≧∀≦)ﾉ Enabling BBR + CAKE!\033[0m"
         ALGO="bbr"
         QDISC="cake"
         ask_to_save
         ;;
     8)
-        echo -e "\033[1;32mヽ(・∀・)ノ 您选择了卸载 BBR 内核！\033[0m"
+        echo -e "\033[1;32mヽ(・∀・)ノ You selected Uninstall BBR Kernel!\033[0m"
         PACKAGES_TO_REMOVE=$(dpkg -l | grep "joeyblog" | awk '{print $2}' | tr '\n' ' ')
         if [[ -n "$PACKAGES_TO_REMOVE" ]]; then
             echo -e "\033[36m将要卸载以下内核包: \033[33m$PACKAGES_TO_REMOVE\033[0m"
@@ -375,6 +375,6 @@ case "$ACTION" in
         fi
         ;;
     *)
-        echo -e "\033[31m(￣▽￣)ゞ 无效的选项，请输入 1-8 之间的数字哦~\033[0m"
+        echo -e "\033[31m(￣▽￣)ゞ Invalid option, please enter a number between 1 and 8~\033[0m"
         ;;
 esac
