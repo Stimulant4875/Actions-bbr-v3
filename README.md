@@ -53,12 +53,13 @@ Each time you run the script, you will enter a lively and practical interactive 
 ```bash
 ╭( ･ㅂ･)و ✧ Please choose an option:
   1. 🛠️  Install BBR v3
-  2. 🔍 Check if BBR v3 is active
-  3. ⚡ Enable BBR + FQ
-  4. ⚡ Enable BBR + FQ_PIE
-  5. ⚡ Enable BBR + CAKE
-  6. 🔧 Enable or Disable BBR
-  7. 🗑️  Uninstall
+  2. 🔍 Check BBR v3 Status
+  3. ⚡ Check if BBR v3 is active
+  4. ⚡ Enable BBR + FQ
+  5. ⚡ Enable BBR + FQ_PIE
+  6. ⚡ Enable BBR + CAKE
+  7. 🔧 Enable or Disable BBR
+  8. 🗑️  Uninstall
 ```
 
 > **Tip:** If you select the wrong option, no worries — the script will guide you accordingly.
