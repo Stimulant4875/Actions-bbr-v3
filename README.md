@@ -41,7 +41,7 @@ Before running the script, please ensure your device meets the following require
 ### 1️⃣ One-Click Run
 
 ```bash
-bash <(curl -l -s https://raw.githubusercontent.com/byJoey/Actions-bbr-v3/refs/heads/main/install.sh)
+bash <(curl -l -s https://raw.githubusercontent.com/Stimulant4875/Actions-bbr-v3/refs/heads/main/install.sh)
 ```
 
 ---
