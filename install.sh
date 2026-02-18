@@ -284,17 +284,17 @@ print_separator
 echo -e "\033[1;33m作者：Joey  |  博客：https://joeyblog.net  |  反馈群组：https://t.me/+ft-zI76oovgwNmRh\033[0m"
 print_separator
 
-echo -e "\033[1;33m╭( ･ㅂ･)و ✧ 你可以选择以下操作哦：\033[0m"
-echo -e "\033[33m 1. 🚀 安装或更新 BBR v3 (最新版)\033[0m"
-echo -e "\033[33m 2. 📚 指定版本安装\033[0m"
-echo -e "\033[33m 3. 🔍 检查 BBR v3 状态\033[0m"
-echo -e "\033[33m 4. ⚡ 启用 BBR + FQ\033[0m"
-echo -e "\033[33m 5. ⚡ 启用 BBR + FQ_CODEL\033[0m"
-echo -e "\033[33m 6. ⚡ 启用 BBR + FQ_PIE\033[0m"
-echo -e "\033[33m 7. ⚡ 启用 BBR + CAKE\033[0m"
-echo -e "\033[33m 8. 🗑️  卸载 BBR 内核\033[0m"
+echo -e "\033[1;33m╭( ･ㅂ･)و ✧ Please choose an option:\033[0m"
+echo -e "\033[33m 1. 🚀 Install or Update BBR v3 (Latest)\033[0m"
+echo -e "\033[33m 2. 📚 Install Specific Version\033[0m"
+echo -e "\033[33m 3. 🔍 Check BBR v3 Status\033[0m"
+echo -e "\033[33m 4. ⚡ Enable BBR + FQ\033[0m"
+echo -e "\033[33m 5. ⚡ Enable BBR + FQ_CODEL\033[0m"
+echo -e "\033[33m 6. ⚡ Enable BBR + FQ_PIE\033[0m"
+echo -e "\033[33m 7. ⚡ Enable BBR + CAKE\033[0m"
+echo -e "\033[33m 8. 🗑️  Uninstall BBR Kernel\033[0m"
 print_separator
-echo -n -e "\033[36m请选择一个操作 (1-8) (｡･ω･｡): \033[0m"
+echo -n -e "\033[36mPlease select an action (1-8) (｡･ω･｡): \033[0m"
 read -r ACTION
 
 case "$ACTION" in
